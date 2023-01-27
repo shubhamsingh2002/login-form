@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Red+Hat+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form id="form" action="connect.php" method="post" onsubmit="return validation()" name="google-sheet">
+            <div class="form-control">
+                <label for="firstname">First Name :</label>
+                <input type="text" name="firstname" id="firstname" autocomplete="off" placeholder="Enter First Name" required>
+                <span id="fname" class="spn"></span><br>
+            </div>
+
+            <div class="form-control">
+                <label for="lastname">Last Name :</label><input type="text" name="lastname" id="lastname"
+                    autocomplete="off" placeholder="Enter Last Name" required>
+                <span id="lname" class="spn"></span><br>
+            </div>
+            <div class="form-control">
+                <label for="email">Email :</label>
+                <input type="text" name="email" id="email" autocomplete="off" placeholder="Enter Email Id" required>
+                <span id="em" class="spn"></span><br>
+            </div>
+ 
+            <div class="form-control">
+                <label for="password">Password :</label><input type="password" name="password" id="password"
+                    autocomplete="off" placeholder="Password" required>
+                <span id="psw" class="spn"></span><br>
+            </div>
+            <div class="form-control">
+                <label for="phonenumber">Phone Number :</label><input type="text" name="phonenumber" id="phonenumber"
+                    autocomplete="off" placeholder="Enter Your Mobile Number" required>
+                <span id="phno" class="spn"></span><br>
+            </div>
+            <button class="btn" type="submit" name="submit">Submit</button>
+            <button class="btn" type="reset" name="reset">Reset</button>
+        </form>
+    </div>
+</body>
+<script defer src="script.js"></script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw36fpWhLO0F2G4fh5v5FMNDHS6m8yBeHRyb7cthhuRaINFOFXSD9PBkwFX8URCXVA-/exec'
+    const form = document.forms['google-sheet']
+
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL,{
+            method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us.."))
+            .catch(error => console.error('Error!', error.message))
+        })
+
+</script>
+
+
+</html>
